@@ -17,3 +17,11 @@ variables:
 steps:
 - script: dotnet build --configuration $(buildConfiguration)
   displayName: 'dotnet build $(buildConfiguration)'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(0c404b3f-be87-4f0d-9ac1-ef8c118df5d4)'
+    appType: 'webApp'
+    appName: 'techstorecloud20250922104235'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    deploymentMethod: 'auto'
