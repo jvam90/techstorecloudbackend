@@ -60,10 +60,10 @@ steps:
     artifactName: 'drop'
     publishLocation: 'Container'
 
-- task: AzureRmWebAppDeployment@5
+- task: ArchiveFiles@2
   inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Azure subscription 1(0c404b3f-be87-4f0d-9ac1-ef8c118df5d4)'
-    appType: 'webApp'
-    WebAppName: 'techstorecloud20250922104235'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    rootFolderOrFile: '$(Build.BinariesDirectory)'
+    includeRootFolder: true
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    replaceExistingArchive: true
